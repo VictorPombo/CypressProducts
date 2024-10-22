@@ -13,21 +13,17 @@ function gerarStringAleatoria(tamanho) {
   describe('template spec', () => {
     it('passes', () => {
       cy.visit('http://127.0.0.1:5500/login.html')
-      cy.get('#loginEmail').type('x2@gmail.com')
-      cy.get('#loginPassword').type('123456')
+      cy.get('#Nome').type('Banana')
+      cy.get('#Tipo').type('Fruta')
+      cy.get('#Preco').type('R$ 99,99')
       cy.get('.btn').click()
       cy.get('#loginError').should('contain','Usuário ou senha inválidos!' )
       cy.get(':nth-child(5) > #btnCadastrar').click()
      
       //Cadastrar
-      const nome = `${gerarStringAleatoria(5)}`;
-      const email = `${nome}@gmail.com`;
-      const password = `${gerarStringAleatoria(5)}`;
       cy.get('#registerName').type(nome)
-      cy.get('#registerEmail').type(email)
-      cy.get('#registerPassword').type(password)
+      cy.get('#registerType').type(tipo)
+      cy.get('#registerPrice').type(preco)
       cy.get('.btn').click()
-      cy.get('h2').should('contain', 'Login')
-  
     })
   })
